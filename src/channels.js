@@ -62,7 +62,7 @@ module.exports = function (app) {
   // });
 
   app.service("messages").publish("created", (data, conn) => {
-    console.log("tesssss", data.dataValues);
+    console.log("tessss", data.dataValues);
     return app.channel(data.dataValues);
   });
 
