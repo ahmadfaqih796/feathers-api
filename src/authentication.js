@@ -5,7 +5,8 @@ const {
 const { LocalStrategy } = require("@feathersjs/authentication-local");
 const { expressOauth } = require("@feathersjs/authentication-oauth");
 
-const invalidAuth = require("./hooks/invalid-auth");
+const invalidAuth = require("./hooks/auth/invalid-auth");
+const authResponse = require("./hooks/auth/auth-response");
 
 module.exports = (app) => {
   const authentication = new AuthenticationService(app);
@@ -20,7 +21,7 @@ module.exports = (app) => {
 
   service.hooks({
     after: {
-      // create: [authResponse()],
+      create: [authResponse()],
     },
     error: {
       create: [invalidAuth()],
