@@ -42,7 +42,7 @@ module.exports = function (app) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
     users.hasMany(models.address, {
-      as: "alamat",
+      as: "address",
       foreignKey: "user_id",
     });
   };
