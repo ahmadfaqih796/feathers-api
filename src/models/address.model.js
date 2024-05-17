@@ -5,25 +5,32 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get("sequelizeClient");
-  const users = sequelizeClient.define(
-    "users",
+  const address = sequelizeClient.define(
+    "address",
     {
-      id: {
+      id_address: {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
       },
-      fullname: {
+      user_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
+      jln: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      email: {
+      rt: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
       },
-      password: {
+      rw: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      kota: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -38,14 +45,13 @@ module.exports = function (app) {
   );
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function (models) {
+  address.associate = function (models) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
-    users.hasMany(models.address, {
-      as: "alamat",
+    address.belongsTo(models.users, {
       foreignKey: "user_id",
     });
   };
 
-  return users;
+  return address;
 };
