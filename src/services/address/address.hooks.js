@@ -1,14 +1,22 @@
-const { authenticate } = require('@feathersjs/authentication').hooks;
+const { authenticate } = require("@feathersjs/authentication").hooks;
+
+const handleCreatedBy = () => {
+  return async (context) => {
+    const { params, data } = context;
+    data.user_id = params.user.id;
+    return context;
+  };
+};
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate("jwt")],
     find: [],
     get: [],
-    create: [],
+    create: [handleCreatedBy()],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   after: {
@@ -18,7 +26,7 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -28,6 +36,6 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };
