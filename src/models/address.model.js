@@ -50,6 +50,7 @@ module.exports = function (app) {
     // See https://sequelize.org/master/manual/assocs.html
     address.belongsTo(models.users, {
       foreignKey: "user_id",
+      as: "user",
     });
   };
 

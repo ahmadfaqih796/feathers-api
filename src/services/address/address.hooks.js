@@ -1,4 +1,5 @@
 const { authenticate } = require("@feathersjs/authentication").hooks;
+const includeUser = require("../../hooks/include/user");
 
 const handleCreatedBy = () => {
   return async (context) => {
@@ -11,7 +12,7 @@ const handleCreatedBy = () => {
 module.exports = {
   before: {
     all: [authenticate("jwt")],
-    find: [],
+    find: [includeUser()],
     get: [],
     create: [handleCreatedBy()],
     update: [],
