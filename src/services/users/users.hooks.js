@@ -4,6 +4,7 @@ const { hashPassword, protect } =
   require("@feathersjs/authentication-local").hooks;
 
 const includeAddress = require("../../hooks/include/address");
+const invalidEmail = require("../../hooks/auth/invalid-email");
 
 module.exports = {
   before: {
@@ -34,7 +35,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [invalidEmail()],
     update: [],
     patch: [],
     remove: [],
