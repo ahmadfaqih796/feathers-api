@@ -12,7 +12,7 @@ const handleCreatedBy = () => {
 module.exports = {
   before: {
     all: [authenticate("jwt")],
-    find: [includeUser()],
+    find: [includeUser({ attributes: ["fullname", "email"] })],
     get: [],
     create: [handleCreatedBy()],
     update: [],

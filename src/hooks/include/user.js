@@ -5,12 +5,16 @@ const concatValue = (k, l, r) => (k === "include" ? concat(l, r) : r);
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async (context) => {
+    const { attributes } = options;
     const sequelize = context.app.get("sequelizeClient");
     const { users } = sequelize.models;
     const include = [
       {
         model: users,
         as: "user",
+        ...(attributes
+          ? { attributes }
+          : { attributes: { exclude: ["password"] } }),
       },
     ];
 
