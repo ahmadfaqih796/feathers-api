@@ -27,6 +27,10 @@ module.exports = function (app) {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      photo: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       hooks: {
