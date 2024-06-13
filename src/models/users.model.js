@@ -29,7 +29,7 @@ module.exports = function (app) {
       },
       photo: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
     },
     {
