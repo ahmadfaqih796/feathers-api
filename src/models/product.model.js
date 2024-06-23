@@ -5,29 +5,28 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get("sequelizeClient");
-  const users = sequelizeClient.define(
-    "users",
+  const product = sequelizeClient.define(
+    "product",
     {
-      id: {
+      id_product: {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
       },
-      fullname: {
+      address_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
+      n_product: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      email: {
-        type: DataTypes.STRING(70),
-        allowNull: false,
-        indexes: [{ unique: true, fields: ["email"] }],
+      price: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
       },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      photo: {
+      description: {
         type: DataTypes.STRING,
         allowNull: true,
       },
@@ -42,14 +41,10 @@ module.exports = function (app) {
   );
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function (models) {
+  product.associate = function (models) {
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
-    users.hasMany(models.address, {
-      as: "address",
-      foreignKey: "user_id",
-    });
   };
 
-  return users;
+  return product;
 };
