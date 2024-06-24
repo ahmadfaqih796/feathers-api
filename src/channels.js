@@ -62,10 +62,11 @@ module.exports = function (app) {
   // });
 
   app.service("messages").publish("created", (data, conn) => {
-    return app.channel(data.client_id);
+    console.log("tessssssssssss", data.dataValues);
+    return app.channel(data.dataValues);
   });
 
   app.service("messages").publish("removed", (data, conn) => {
-    return app.channel(data.client_id);
+    return app.channel(data);
   });
 };

@@ -16,7 +16,7 @@ module.exports = function (app) {
       },
       client_id: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
       },
       user_id: {
         allowNull: false,
